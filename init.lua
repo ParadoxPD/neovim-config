@@ -1,7 +1,7 @@
 -- Import the core package
 
-require 'core.options'
 require 'core.keymaps'
+require 'core.options'
 
 -- [[ Basic Autocommands ]]
 
@@ -47,6 +47,7 @@ require('lazy').setup({
   require 'custom.plugins.treesitter',
   require 'custom.plugins.bufferline',
 
+  require 'custom.plugins.undo-tree',
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
