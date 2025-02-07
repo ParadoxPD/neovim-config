@@ -29,7 +29,7 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   require 'custom.plugins.theme',
-
+  require 'custom.plugins.alpha',
   require 'custom.plugins.gitsigns',
   require 'custom.plugins.which-key',
 
@@ -39,8 +39,9 @@ require('lazy').setup({
 
   require 'custom.plugins.conform',
   require 'custom.plugins.nvim-cmp',
+  require 'custom.plugins.none-ls',
 
-  require 'custom.plugins.todo-comments',
+  require 'custom.plugins.misc',
   require 'custom.plugins.mini',
 
   require 'custom.plugins.treesitter',
@@ -50,6 +51,7 @@ require('lazy').setup({
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.gitsigns',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
