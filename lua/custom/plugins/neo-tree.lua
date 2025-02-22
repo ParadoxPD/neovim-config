@@ -25,10 +25,18 @@ return {
       end,
     },
   },
+
   cmd = 'Neotree',
+
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    {
+      '\\',
+      ':Neotree reveal<cr>',
+      desc = 'NeoTree reveal',
+      silent = true,
+    },
   },
+
   config = function()
     -- If you want icons for diagnostic errors, you'll need to define them somewhere:
     vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
@@ -171,6 +179,7 @@ return {
         -- instead of relying on nvim autocmd events.
         window = {
           mappings = {
+            ['<cr>'] = 'open',
             ['\\'] = 'close_window',
             ['<bs>'] = 'navigate_up',
             ['.'] = 'set_root',

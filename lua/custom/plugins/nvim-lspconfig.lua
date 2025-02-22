@@ -14,6 +14,7 @@ return {
 
     -- Allows extra capabilities provided by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
+    
   },
   config = function()
     -- Brief aside: **What is LSP?**
@@ -163,6 +164,7 @@ return {
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
+      jdtls = {},
       clangd = {},
       gopls = {},
       -- pyright = {},
@@ -174,6 +176,7 @@ return {
       --
       -- But for many setups, the LSP (`ts_ls`) will work just fine
       -- ts_ls = {},
+      --
       --
 
       lua_ls = {
