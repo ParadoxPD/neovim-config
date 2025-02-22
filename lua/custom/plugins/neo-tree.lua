@@ -31,8 +31,8 @@ return {
   keys = {
     {
       '\\',
-      ':Neotree reveal<cr>',
-      desc = 'NeoTree reveal',
+      ':Neotree float<cr>',
+      desc = 'NeoTree float',
       silent = true,
     },
   },
