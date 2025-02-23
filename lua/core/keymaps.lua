@@ -98,3 +98,5 @@ vim.keymap.set('n', '<C-x>', '<C-v>', { desc = 'Visual block Mode' })
 -- vim.keymap.del('i', '<C-l>', opts)
 vim.keymap.set('i', '<C-h>', '<Esc>:wincmd h<CR>i', opts)
 vim.keymap.set('i', '<C-l>', '<Esc>:wincmd l<CR>i', opts)
+
+vim.keymap.set('i', '<C-d>', vim.diagnostic.open_float, opts)
