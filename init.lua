@@ -32,6 +32,7 @@ require('lazy').setup({
   require 'custom.plugins.alpha',
   require 'custom.plugins.gitsigns',
   require 'custom.plugins.which-key',
+  require 'custom.plugins.cloak',
 
   require 'custom.plugins.telescope',
   require 'custom.plugins.lazydev',

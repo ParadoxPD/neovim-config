@@ -229,7 +229,7 @@ return {
           event = 'file_opened',
           handler = function(file_path)
             -- close neo-tree afte a file is opened
-            print 'File Opened'
+            --            print 'File Opened'
             require('neo-tree.command').execute { action = 'close' }
           end,
         },
