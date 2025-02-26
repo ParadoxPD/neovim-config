@@ -8,21 +8,6 @@ return {
     {
       's1n7ax/nvim-window-picker',
       version = '2.*',
-      config = function()
-        require('window-picker').setup {
-          filter_rules = {
-            include_current_win = false,
-            autoselect_one = true,
-            -- filter using buffer options
-            bo = {
-              -- if the file type is one of following, the window will be ignored
-              filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
-              -- if the buffer type is one of following, the window will be ignored
-              buftype = { 'terminal', 'quickfix' },
-            },
-          },
-        }
-      end,
     },
   },
 
@@ -31,9 +16,14 @@ return {
   keys = {
     {
       '\\',
-      ':Neotree float<cr>',
-      desc = 'NeoTree float',
+      ':Neotree float source=filesystem<cr>',
+      desc = 'NeoTree Open Flie Tree in float',
       silent = true,
+    },
+    {
+      '<leader>e',
+      ':Neotree toggle=true source=filesystem reveal=true position=left<CR>',
+      desc = 'open file tree [e]xplorer',
     },
   },
 
@@ -167,7 +157,7 @@ return {
         follow_current_file = {
           enabled = false, -- This will find and focus the file in the active buffer every time
           --               -- the current file is changed while the tree is open.
-          leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+          leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
         group_empty_dirs = false, -- when true, empty folders will be grouped together
         hijack_netrw_behavior = 'open_default', -- netrw disabled, opening a directory opens neo-tree
@@ -232,6 +222,29 @@ return {
             ['os'] = { 'order_by_size', nowait = false },
             ['ot'] = { 'order_by_type', nowait = false },
           },
+        },
+      },
+      event_handlers = {
+        {
+          event = 'file_opened',
+          handler = function(file_path)
+            -- close neo-tree afte a file is opened
+            print 'File Opened'
+            require('neo-tree.command').execute { action = 'close' }
+          end,
+        },
+      },
+    }
+    require('window-picker').setup {
+      filter_rules = {
+        include_current_win = false,
+        autoselect_one = true,
+        -- filter using buffer options
+        bo = {
+          -- if the file type is one of following, the window will be ignored
+          filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
+          -- if the buffer type is one of following, the window will be ignored
+          buftype = { 'terminal', 'quickfix' },
         },
       },
     }
