@@ -6,7 +6,7 @@ return {
   config = function()
     -- Lua
     require('onedark').setup {
-      style = 'dark',     -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+      style = 'dark', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
       term_colors = true, -- Change terminal color as per the selected theme style
       -- vim.cmd [[colorscheme tokyonight]],
 
@@ -15,13 +15,12 @@ return {
       },
 
       diagnostics = {
-        darker = true,     -- darker colors for diagnostic
-        undercurl = true,  -- use undercurl instead of underline for diagnostics
+        darker = true, -- darker colors for diagnostic
+        undercurl = true, -- use undercurl instead of underline for diagnostics
         background = true, -- use background color for virtual text
       },
     }
 
     vim.cmd.colorscheme 'onedark'
-    vim.cmd.hi 'Comment gui=none'
   end,
 }
