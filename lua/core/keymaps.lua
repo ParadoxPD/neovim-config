@@ -13,13 +13,13 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- save file
-vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
+--vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 
 -- save file without auto-formatting
-vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
+--vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
 
 -- quit file
-vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
+--vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 
 -- delete single character without copying into register
 vim.keymap.set('n', 'x', '"_x', opts)
@@ -33,10 +33,10 @@ vim.keymap.set('n', 'n', 'nzzzv', opts)
 vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
 -- Resize with arrows
-vim.keymap.set('n', '<Up>', ':resize -2<CR>', opts)
-vim.keymap.set('n', '<Down>', ':resize +2<CR>', opts)
-vim.keymap.set('n', '<Left>', ':vertical resize -2<CR>', opts)
-vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>', opts)
+--vim.keymap.set('n', '<Up>', ':resize -2<CR>', opts)
+--vim.keymap.set('n', '<Down>', ':resize +2<CR>', opts)
+--vim.keymap.set('n', '<Left>', ':vertical resize -2<CR>', opts)
+--vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>', opts)
 
 -- Buffers
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
@@ -84,13 +84,10 @@ vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open float
 -- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 --My remaps
+-- vim.keymap.set('v', 'j', 'k', { desc = 'Move Up' })
+-- vim.keymap.set('v', 'k', 'j', { desc = 'Move Down' })
 -- vim.keymap.set('n', 'j', 'k', { desc = 'Move Up' })
 -- vim.keymap.set('n', 'k', 'j', { desc = 'Move Down' })
-vim.keymap.set('v', 'j', 'k', { desc = 'Move Up' })
-vim.keymap.set('v', 'k', 'j', { desc = 'Move Down' })
-
-vim.keymap.set('n', 'j', 'k', { desc = 'Move Up' })
-vim.keymap.set('n', 'k', 'j', { desc = 'Move Down' })
 
 vim.keymap.set('n', '<C-x>', '<C-v>', { desc = 'Visual block Mode' })
 

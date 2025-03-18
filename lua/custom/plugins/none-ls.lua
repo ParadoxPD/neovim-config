@@ -12,6 +12,7 @@ return {
     -- Formatters & linters for mason to install
     require('mason-null-ls').setup {
       ensure_installed = {
+        'clangd', -- formatter for c/c++
         'prettier', -- ts/js formatter
         'stylua', -- lua formatter
         'eslint_d', -- ts/js linter
@@ -24,10 +25,16 @@ return {
 
     local sources = {
       diagnostics.checkmake,
-      formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown' } },
+      formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown', 'js', 'jsx', 'ts', 'tsx' } },
       formatting.stylua,
+      formatting.clang_format.with {
+        extra_args = {
+          '-style=file:' .. vim.fn.expand '/path/to/.clang-format',
+        },
+      },
       formatting.shfmt.with { args = { '-i', '4' } },
       formatting.terraform_fmt,
+
       require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'I' } },
       require 'none-ls.formatting.ruff_format',
     }
