@@ -97,3 +97,6 @@ vim.keymap.set('i', '<C-h>', '<Esc>:wincmd h<CR>i', opts)
 vim.keymap.set('i', '<C-l>', '<Esc>:wincmd l<CR>i', opts)
 
 vim.keymap.set('i', '<C-d>', vim.diagnostic.open_float, opts)
+
+vim.keymap.set('n', '<leader>i', ':Typr<CR>', { desc = 'Open TYpr' })
+vim.keymap.set('n', '<leader>I', ':TyprStats<CR>', { desc = 'Open TYpr Dashboard' })

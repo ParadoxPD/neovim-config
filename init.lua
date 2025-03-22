@@ -44,6 +44,7 @@ require('lazy').setup({
 
   require 'custom.plugins.misc',
   require 'custom.plugins.mini',
+  require 'custom.plugins.typr',
 
   require 'custom.plugins.treesitter',
   require 'custom.plugins.bufferline',
