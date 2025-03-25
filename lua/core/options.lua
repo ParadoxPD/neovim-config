@@ -59,4 +59,4 @@ vim.opt.scrolloff = 10
 vim.opt.mousemoveevent = true
 vim.opt.termguicolors = true
 
-vim.diagnostic.config { virtual_lines = true, virtual_text = true }
+vim.diagnostic.config { virtual_lines = false, virtual_text = true }

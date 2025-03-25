@@ -42,6 +42,7 @@ require('lazy').setup({
   require 'custom.plugins.nvim-cmp',
   require 'custom.plugins.none-ls',
 
+  require 'custom.plugins.temp',
   require 'custom.plugins.misc',
   require 'custom.plugins.mini',
   require 'custom.plugins.typr',
