@@ -10,13 +10,14 @@ return {
       version = '2.*',
     },
   },
+  lazy = false,
 
   cmd = 'Neotree',
 
   keys = {
     {
       '\\',
-      ':Neotree float source=filesystem<cr>',
+      ':Neotree float source=filesystem toggle=true reveal=true<cr>',
       desc = 'NeoTree Open Flie Tree in float',
       silent = true,
     },
@@ -35,6 +36,8 @@ return {
     vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
 
     require('neo-tree').setup {
+      log_level = 'debug',
+
       close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
       popup_border_style = 'rounded',
       enable_git_status = true,
@@ -155,7 +158,7 @@ return {
           },
         },
         follow_current_file = {
-          enabled = false, -- This will find and focus the file in the active buffer every time
+          enabled = true, -- This will find and focus the file in the active buffer every time
           --               -- the current file is changed while the tree is open.
           leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },

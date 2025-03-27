@@ -60,3 +60,9 @@ vim.opt.mousemoveevent = true
 vim.opt.termguicolors = true
 
 vim.diagnostic.config { virtual_lines = false, virtual_text = true }
+
+-- vim.g.neo_tree_change_cwd_on_dir_changed = true
+-- vim.g.neo_tree_change_cwd_on_file_open = true
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
