@@ -14,18 +14,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- -- Change working directory to the directory of the currently opened file
--- vim.api.nvim_create_autocmd('BufEnter', {
---   desc = 'Change working directory to the directory of the currently opened file',
---   group = vim.api.nvim_create_augroup('change_cwd_on_bufenter', { clear = true }),
---   callback = function()
---     local file_path = vim.fn.expand '%:p:h'
---     if file_path ~= '' then
---       vim.cmd('lcd ' .. file_path)
---     end
---   end,
--- })
---
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
