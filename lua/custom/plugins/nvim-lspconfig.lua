@@ -10,7 +10,7 @@ return {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP.
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',       opts = {} },
 
     -- Allows extra capabilities provided by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
@@ -177,7 +177,8 @@ return {
             'meson.build',
             'meson_options.txt',
             'build.ninja'
-          )(fname) or require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt')(fname) or require('lspconfig.util').find_git_ancestor(
+          )(fname) or require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt')(fname) or
+          require('lspconfig.util').find_git_ancestor(
             fname
           )
         end,
@@ -226,12 +227,12 @@ return {
       cssls = {},
       tailwindcss = {
         root_dir = function(...)
-          return require('lspconfig.util').root_pattern '.git'(...)
+          return require('lspconfig.util').root_pattern '.git' (...)
         end,
       },
       ts_ls = {
         root_dir = function(...)
-          return require('lspconfig.util').root_pattern '.git'(...)
+          return require('lspconfig.util').root_pattern '.git' (...)
         end,
         single_file_support = false,
         settings = {

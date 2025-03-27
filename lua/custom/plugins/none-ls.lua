@@ -4,6 +4,7 @@ return {
     'nvimtools/none-ls-extras.nvim',
     'jayp0521/mason-null-ls.nvim', -- ensure dependencies are installed
   },
+  lazy = false,
   config = function()
     local null_ls = require 'null-ls'
     local formatting = null_ls.builtins.formatting -- to setup formatters
@@ -19,7 +20,6 @@ return {
         'shfmt', -- Shell formatter
         'checkmake', -- linter for Makefiles
         'ruff', -- Python linter and formatter
-        'jdtls',
       },
       automatic_installation = true,
     }
@@ -28,13 +28,6 @@ return {
       diagnostics.checkmake,
       formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown', 'javascript', 'jsx', 'typescript', 'tsx' } },
       formatting.stylua,
-      formatting.google_java_format,
-      formatting.clang_format.with {
-        filetypes = { 'c', 'cpp' },
-        extra_args = {
-          '-style=file:' .. vim.fn.expand '/path/to/.clang-format',
-        },
-      },
       formatting.shfmt.with { args = { '-i', '4' } },
       formatting.terraform_fmt,
 
