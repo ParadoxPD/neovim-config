@@ -41,7 +41,9 @@ return {
       sources = sources,
       -- you can reuse a shared lspconfig on_attach callback here
       on_attach = function(client, bufnr)
+        print 'insidde shit'
         if client.supports_method 'textDocument/formatting' then
+          print 'inside if shit'
           vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
           vim.api.nvim_create_autocmd('BufWritePre', {
             group = augroup,

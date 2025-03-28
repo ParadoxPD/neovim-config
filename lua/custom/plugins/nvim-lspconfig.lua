@@ -10,10 +10,11 @@ return {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP.
-    { 'j-hui/fidget.nvim',       opts = {} },
+    { 'j-hui/fidget.nvim', opts = {} },
 
     -- Allows extra capabilities provided by nvim-cmp
-    'saghen/blink.cmp',
+    --'saghen/blink.cmp',
+    'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
     -- Brief aside: **What is LSP?**
@@ -151,9 +152,9 @@ return {
     --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
     --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities({}, false))
+    --capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities({}, false))
     --local capabilities = require('blink.cmp').get_lsp_capabilities()
-
+    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     --
@@ -178,8 +179,7 @@ return {
             'meson.build',
             'meson_options.txt',
             'build.ninja'
-          )(fname) or require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt')(fname) or
-          require('lspconfig.util').find_git_ancestor(
+          )(fname) or require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt')(fname) or require('lspconfig.util').find_git_ancestor(
             fname
           )
         end,
@@ -228,12 +228,12 @@ return {
       cssls = {},
       tailwindcss = {
         root_dir = function(...)
-          return require('lspconfig.util').root_pattern '.git' (...)
+          return require('lspconfig.util').root_pattern '.git'(...)
         end,
       },
       ts_ls = {
         root_dir = function(...)
-          return require('lspconfig.util').root_pattern '.git' (...)
+          return require('lspconfig.util').root_pattern '.git'(...)
         end,
         single_file_support = false,
         settings = {
