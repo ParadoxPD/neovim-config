@@ -7,19 +7,19 @@ return {
   lazy = false,
   config = function()
     local null_ls = require 'null-ls'
-    local formatting = null_ls.builtins.formatting -- to setup formatters
+    local formatting = null_ls.builtins.formatting   -- to setup formatters
     local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
     -- Formatters & linters for mason to install
     require('mason-null-ls').setup {
       ensure_installed = {
-        'clangd', -- formatter for c/c++
-        'prettier', -- ts/js formatter
-        'stylua', -- lua formatter
-        'eslint_d', -- ts/js linter
-        'shfmt', -- Shell formatter
+        'clangd',    -- formatter for c/c++
+        'prettier',  -- ts/js formatter
+        'stylua',    -- lua formatter
+        'eslint_d',  -- ts/js linter
+        'shfmt',     -- Shell formatter
         'checkmake', -- linter for Makefiles
-        'ruff', -- Python linter and formatter
+        'ruff',      -- Python linter and formatter
       },
       automatic_installation = true,
     }
@@ -41,9 +41,7 @@ return {
       sources = sources,
       -- you can reuse a shared lspconfig on_attach callback here
       on_attach = function(client, bufnr)
-        print 'insidde shit'
         if client.supports_method 'textDocument/formatting' then
-          print 'inside if shit'
           vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
           vim.api.nvim_create_autocmd('BufWritePre', {
             group = augroup,

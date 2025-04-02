@@ -1,5 +1,6 @@
 return { -- Autocompletion
   'hrsh7th/nvim-cmp',
+  lazy = false,
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
     {
@@ -145,6 +146,19 @@ return { -- Autocompletion
             fallback()
           end
         end, { 'i', 's' }),
+
+        ['<Up>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.close()
+          end
+          fallback()
+        end, { 'i' }),
+        ['<Down>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.close()
+          end
+          fallback()
+        end, { 'i' }),
       },
       sources = {
         {
@@ -171,5 +185,6 @@ return { -- Autocompletion
         end,
       },
     }
+    print(cmp.mapping)
   end,
 }
