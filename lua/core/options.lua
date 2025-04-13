@@ -18,9 +18,11 @@ end)
 vim.opt.breakindent = true
 
 --Tab Width set to 4
+vim.o.smartindent = true
 vim.o.tabstop = 4
 vim.o.expandtab = true
 vim.o.shiftwidth = 4
+vim.o.autoindent = true
 
 -- Save undo history
 vim.opt.undofile = true

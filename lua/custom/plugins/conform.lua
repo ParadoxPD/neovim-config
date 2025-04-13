@@ -46,6 +46,7 @@ return { -- Autoformat
       c = { 'clangd' },
       cpp = { 'clangd' },
       java = { 'google-java-format' },
+      bash = { 'shfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
