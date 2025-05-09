@@ -200,7 +200,9 @@ return {
       },
       gopls = {},
       pyright = {},
-      rust_analyzer = {},
+      rust_analyzer = {
+        cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
+      },
       bashls = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
