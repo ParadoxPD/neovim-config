@@ -185,6 +185,5 @@ return { -- Autocompletion
         end,
       },
     }
-    print(cmp.mapping)
   end,
 }

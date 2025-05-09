@@ -1,25 +1,3 @@
---Testing
-config = function()
-  local formatters = require('conform').list_all_formatters()
-  print(dump(formatters))
-end
-function dump(o)
-  if type(o) == 'table' then
-    local s = '{ '
-    for k, v in pairs(o) do
-      if type(k) ~= 'number' then
-        k = '"' .. k .. '"'
-      end
-      s = s .. '"' .. k .. '" = ' .. dump(v) .. ','
-    end
-    return s .. '} '
-  else
-    return tostring(o)
-  end
-end
-
----
---- Testing
 ---
 return { -- Autoformat
   'stevearc/conform.nvim',
