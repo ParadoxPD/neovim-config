@@ -43,11 +43,11 @@ require('lazy').setup({
   require 'custom.plugins.none-ls',
 
   require 'custom.plugins.markdown-stuff',
-  require 'custom.plugins.temp',
+  --require 'custom.plugins.temp',
   require 'custom.plugins.misc',
   require 'custom.plugins.mini',
   --require 'custom.plugins.typr',
-  --require 'custom.plugins.testing',
+  require 'custom.plugins.testing',
 
   require 'custom.plugins.treesitter',
   require 'custom.plugins.bufferline',

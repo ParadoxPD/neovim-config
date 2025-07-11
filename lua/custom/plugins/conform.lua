@@ -37,6 +37,7 @@ return { -- Autoformat
       jsx = { 'prettierd', 'prettier', stop_after_first = true },
       typescript = { 'prettierd', 'prettier', stop_after_first = true },
       tsx = { 'prettierd', 'prettier', stop_after_first = true },
+      elixir = { 'mix format' },
     },
   },
 }

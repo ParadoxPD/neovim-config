@@ -1,6 +1,10 @@
 function _G.Reload(name)
-  package.loaded[name] = nil
-  return require(name)
+  for k in pairs(package.loaded) do
+    if k:match('^' .. name) then
+      package.loaded[k] = nil
+    end
+  end
+  require(name).setup()
 end
 
 return {
