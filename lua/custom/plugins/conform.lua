@@ -38,6 +38,17 @@ return { -- Autoformat
       typescript = { 'prettierd', 'prettier', stop_after_first = true },
       tsx = { 'prettierd', 'prettier', stop_after_first = true },
       elixir = { 'mix format' },
+      dart = { 'dcm', 'dart_format', stop_after_first = true },
+    },
+    formatters = {
+      dart_format = {
+        command = 'dart',
+        args = { 'format', '--stdin-name', '$FILENAME' },
+        stdin = true,
+      },
+      google_java_format = {
+        args = { 'aosp' },
+      },
     },
   },
 }

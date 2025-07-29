@@ -306,5 +306,46 @@ return {
         end,
       },
     }
+
+    require('lspconfig').dartls.setup {
+      capabilities = capabilities,
+      cmd = { 'dart', 'language-server', '--protocol=lsp' },
+      filetypes = { 'dart' },
+      init_options = {
+        onlyAnalyzeProjectsWithOpenFiles = true,
+        suggestFromUnimportedLibraries = true,
+        closingLabels = true,
+        outline = true,
+        flutterOutline = true,
+      },
+      settings = {
+        dart = {
+          completeFunctionCalls = true,
+          showTodos = true,
+          analysisExcludedFolders = {
+            vim.fn.expand '$HOME/.pub-cache',
+            vim.fn.expand '$HOME/fvm',
+          },
+        },
+      },
+      on_attach = function(client, bufnr)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+        -- Key mappings
+        local bufopts = { noremap = true, silent = true, buffer = bufnr }
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+        vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+        vim.keymap.set('n', '<space>f', function()
+          vim.lsp.buf.format { async = true }
+        end, bufopts)
+      end,
+    }
   end,
 }
