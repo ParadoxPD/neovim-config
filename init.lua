@@ -36,7 +36,7 @@ require('lazy').setup({
   require 'custom.plugins.telescope',
   require 'custom.plugins.lazydev',
   require 'custom.plugins.nvim-lspconfig',
-  require 'custom.plugins.trouble',
+  --require 'custom.plugins.trouble',
   require 'custom.plugins.conform',
   --require 'custom.plugins.blink',
   require 'custom.plugins.nvim-cmp',

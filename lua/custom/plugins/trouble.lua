@@ -5,12 +5,12 @@ return {
   keys = {
     {
       '<leader>q',
-      '<cmd>Trouble diagnostics toggle preview.type=float focus=true<cr>',
+      '<cmd>Trouble diagnostics toggle focus=true<cr>',
       desc = 'Diagnostics (Trouble)',
     },
     {
       '<leader>cq',
-      '<cmd>Trouble diagnostics toggle preview.type=float focus=true win.type=float<cr>',
+      '<cmd>Trouble diagnostics toggle focus=true win.type=float<cr>',
       desc = 'Diagnostics (Trouble) float',
     },
     {

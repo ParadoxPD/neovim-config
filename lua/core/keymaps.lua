@@ -76,18 +76,8 @@ vim.keymap.set('v', 'p', '"_dP', opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
--- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
--- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
--- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
--- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
---My remaps
--- vim.keymap.set('v', 'j', 'k', { desc = 'Move Up' })
--- vim.keymap.set('v', 'k', 'j', { desc = 'Move Down' })
--- vim.keymap.set('n', 'j', 'k', { desc = 'Move Up' })
--- vim.keymap.set('n', 'k', 'j', { desc = 'Move Down' })
+vim.keymap.set('i', '<C-d>', vim.diagnostic.open_float, opts)
+--vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 vim.keymap.set('n', '<C-x>', '<C-v>', { desc = 'Visual block Mode' })
 
@@ -95,8 +85,6 @@ vim.keymap.set('n', '<C-x>', '<C-v>', { desc = 'Visual block Mode' })
 -- vim.keymap.del('i', '<C-l>', opts)
 vim.keymap.set('i', '<C-h>', '<Esc>:wincmd h<CR>i', opts)
 vim.keymap.set('i', '<C-l>', '<Esc>:wincmd l<CR>i', opts)
-
-vim.keymap.set('i', '<C-d>', vim.diagnostic.open_float, opts)
 
 -- vim.keymap.set('n', '<leader>i', ':Typr<CR>', { desc = 'Open TYpr' })
 -- vim.keymap.set('n', '<leader>I', ':TyprStats<CR>', { desc = 'Open TYpr Dashboard' })
