@@ -1,6 +1,6 @@
 -- Import the core package
-require 'core.keymaps'
 require 'core.options'
+require 'core.keymaps'
 
 -- [[ Basic Autocommands ]]
 

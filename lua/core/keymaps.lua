@@ -1,9 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
-
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
@@ -85,6 +79,10 @@ vim.keymap.set('n', '<C-x>', '<C-v>', { desc = 'Visual block Mode' })
 -- vim.keymap.del('i', '<C-l>', opts)
 vim.keymap.set('i', '<C-h>', '<Esc>:wincmd h<CR>i', opts)
 vim.keymap.set('i', '<C-l>', '<Esc>:wincmd l<CR>i', opts)
+vim.keymap.set('n', 'J', ':m .+1<CR>==', opts)
+vim.keymap.set('n', 'K', ':m .-2<CR>==', opts)
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", opts)
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts)
 
 -- vim.keymap.set('n', '<leader>i', ':Typr<CR>', { desc = 'Open TYpr' })
 -- vim.keymap.set('n', '<leader>I', ':TyprStats<CR>', { desc = 'Open TYpr Dashboard' })
