@@ -29,11 +29,15 @@ return {
   },
 
   config = function()
-    -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-    vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
-    vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
-    vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
-    vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
+    -- UPDATED: Modern diagnostic signs configuration (0.10+)
+    -- No longer uses vim.fn.sign_define - use vim.diagnostic.config instead
+    -- However, neo-tree still expects these for its own display
+    if vim.g.have_nerd_font then
+      vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
+      vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
+      vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
+      vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
+    end
 
     require('neo-tree').setup {
 
@@ -41,17 +45,9 @@ return {
       popup_border_style = 'rounded',
       enable_git_status = true,
       enable_diagnostics = true,
-      -- enable_normal_mode_for_inputs = false,                             -- Enable normal mode for input dialogs.
       open_files_do_not_replace_types = { 'terminal', 'trouble', 'qf' }, -- when opening files, do not use windows containing these filetypes or buftypes
       sort_case_insensitive = false, -- used when sorting files and directories in the tree
       sort_function = nil, -- use a custom function for sorting files and directories in the tree
-      -- sort_function = function (a,b)
-      --       if a.type == b.type then
-      --           return a.path > b.path
-      --       else
-      --           return a.type > b.type
-      --       end
-      --   end , -- this sorts files and directories descendantly
       default_component_configs = {
         container = {
           enable_character_fade = true,
@@ -66,8 +62,8 @@ return {
           highlight = 'NeoTreeIndentMarker',
           -- expander config, needed for nesting files
           with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
-          expander_collapsed = '',
-          expander_expanded = '',
+          expander_collapsed = '',
+          expander_expanded = '',
           expander_highlight = 'NeoTreeExpander',
         },
         icon = {
@@ -75,10 +71,9 @@ return {
           folder_open = '',
           folder_empty = '󰜌',
           folder_empty_open = '󰜌',
-          -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
-          -- then these will never be used.
           default = '*',
           highlight = 'NeoTreeFileIcon',
+          use_filtered_colors = true,
         },
         modified = {
           symbol = '[+]',
@@ -93,18 +88,17 @@ return {
           symbols = {
             -- Change type
             added = '', -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified = '', -- or "", but this is redundant info if you use git_status_colors on the name
+            modified = '', -- or "", but this is redundant info if you use git_status_colors on the name
             deleted = '✖', -- this can only be used in the git_status source
             renamed = '󰁕', -- this can only be used in the git_status source
             -- Status type
-            untracked = '',
-            ignored = '',
+            untracked = '',
+            ignored = '',
             unstaged = '󰄱',
-            staged = '',
-            conflict = '',
+            staged = '',
+            conflict = '',
           },
         },
-        -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
         file_size = {
           enabled = true,
           required_width = 64, -- min width of window required to show this column
@@ -145,34 +139,18 @@ return {
             '.python-version',
             '.venv',
           },
-          hide_by_pattern = { -- uses glob style patterns
-            --"*.meta",
-            --"*/src/*/tsconfig.json",
-          },
-          always_show = { -- remains visible even if other settings would normally hide it
-            --".gitignored",
-          },
-          never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-            --".DS_Store",
-            --"thumbs.db"
-          },
-          never_show_by_pattern = { -- uses glob style patterns
-            --".null-ls_*",
-          },
+          hide_by_pattern = {},
+          always_show = {},
+          never_show = {},
+          never_show_by_pattern = {},
         },
         follow_current_file = {
-          enabled = true, -- This will find and focus the file in the active buffer every time
-          --               -- the current file is changed while the tree is open.
-          leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+          enabled = true,
+          leave_dirs_open = true,
         },
         group_empty_dirs = false, -- when true, empty folders will be grouped together
-        hijack_netrw_behavior = 'open_default', -- netrw disabled, opening a directory opens neo-tree
-        -- in whatever position is specified in window.position
-        -- "open_current",  -- netrw disabled, opening a directory opens within the
-        -- window like netrw would, regardless of window.position
-        -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-        use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
-        -- instead of relying on nvim autocmd events.
+        hijack_netrw_behavior = 'open_default',
+        use_libuv_file_watcher = false,
         window = {
           mappings = {
             ['<cr>'] = 'open',
@@ -182,8 +160,7 @@ return {
             ['H'] = 'toggle_hidden',
             ['/'] = 'fuzzy_finder',
             ['D'] = 'fuzzy_finder_directory',
-            ['#'] = 'fuzzy_sorter', -- fuzzy sorting using the fzy algorithm
-            -- ["D"] = "fuzzy_sorter_directory",
+            ['#'] = 'fuzzy_sorter',
             ['f'] = 'filter_on_submit',
             ['<c-x>'] = 'clear_filter',
             ['[g'] = 'prev_git_modified',
@@ -197,7 +174,7 @@ return {
             ['os'] = { 'order_by_size', nowait = false },
             ['ot'] = { 'order_by_type', nowait = false },
           },
-          fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
+          fuzzy_finder_mappings = {
             ['<down>'] = 'move_cursor_down',
             ['<C-n>'] = 'move_cursor_down',
             ['<up>'] = 'move_cursor_up',
@@ -205,13 +182,12 @@ return {
           },
         },
 
-        commands = {}, -- Add a custom command or override a global one using the same function name
+        commands = {},
       },
       buffers = {
         follow_current_file = {
-          enabled = true, -- This will find and focus the file in the active buffer every time
-          --              -- the current file is changed while the tree is open.
-          leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+          enabled = true,
+          leave_dirs_open = false,
         },
         group_empty_dirs = true, -- when true, empty folders will be grouped together
         show_unloaded = true,
@@ -234,8 +210,7 @@ return {
         {
           event = 'file_opened',
           handler = function(file_path)
-            -- close neo-tree afte a file is opened
-            --            print 'File Opened'
+            -- close neo-tree after a file is opened
             require('neo-tree.command').execute { action = 'close' }
           end,
         },
@@ -245,11 +220,8 @@ return {
       filter_rules = {
         include_current_win = false,
         autoselect_one = true,
-        -- filter using buffer options
         bo = {
-          -- if the file type is one of following, the window will be ignored
           filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
-          -- if the buffer type is one of following, the window will be ignored
           buftype = { 'terminal', 'quickfix' },
         },
       },

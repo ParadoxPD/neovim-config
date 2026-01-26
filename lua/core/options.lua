@@ -9,10 +9,8 @@ vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamed'
-end)
+-- UPDATED: Simplified - no need for vim.schedule in modern Neovim
+vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -61,9 +59,6 @@ vim.opt.mousemoveevent = true
 vim.opt.termguicolors = true
 
 vim.diagnostic.config { virtual_lines = false, virtual_text = true }
-
--- vim.g.neo_tree_change_cwd_on_dir_changed = true
--- vim.g.neo_tree_change_cwd_on_file_open = true
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

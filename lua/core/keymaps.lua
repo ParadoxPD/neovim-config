@@ -90,16 +90,6 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts)
 vim.keymap.set('n', '<leader>ir', ':Rest run<CR>', { desc = 'Run Rest Client' })
 vim.keymap.set('n', '<leader>il', ':Rest log<CR>', { desc = 'Open Rest Logs' })
 
--- Key mappings
-local bufopts = { noremap = true, silent = true }
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-vim.keymap.set('n', 'gk', vim.lsp.buf.hover, bufopts)
-vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-vim.keymap.set('n', '<leader>f', function()
-  vim.lsp.buf.format { async = true }
-end, bufopts)
+-- LSP Key mappings (these will be overridden by nvim-lspconfig on LspAttach)
+-- REMOVED: Duplicate keymaps - these should only be set in nvim-lspconfig.lua LspAttach
+-- The ones below conflict with window navigation and are redundant
