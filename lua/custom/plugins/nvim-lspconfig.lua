@@ -206,8 +206,11 @@ return {
           },
         },
       },
-      kotlin_language_server = {
-        filetypes = { 'kotlin', 'kt', 'kts' },
+      kotlin_lsp = {
+        filetypes = { 'kotlin' },
+        root_dir = function(fname)
+          return require('lspconfig.util').root_pattern('settings.gradle.kts', 'settings.gradle', 'build.gradle.kts', 'build.gradle', '.git')(fname)
+        end,
       },
     }
 

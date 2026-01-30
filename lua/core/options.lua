@@ -10,7 +10,7 @@ vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 -- UPDATED: Simplified - no need for vim.schedule in modern Neovim
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamed'
 
 -- Enable break indent
 vim.opt.breakindent = true

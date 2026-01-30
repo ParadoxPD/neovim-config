@@ -42,6 +42,7 @@ require('lazy').setup({
   --require 'custom.plugins.blink',
   require 'custom.plugins.nvim-cmp',
   require 'custom.plugins.none-ls',
+  require 'custom.plugins.flutter',
 
   require 'custom.plugins.markdown-stuff',
   --require 'custom.plugins.temp',
