@@ -90,6 +90,6 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts)
 vim.keymap.set('n', '<leader>ir', ':Rest run<CR>', { desc = 'Run Rest Client' })
 vim.keymap.set('n', '<leader>il', ':Rest log<CR>', { desc = 'Open Rest Logs' })
 
--- LSP Key mappings (these will be overridden by nvim-lspconfig on LspAttach)
--- REMOVED: Duplicate keymaps - these should only be set in nvim-lspconfig.lua LspAttach
--- The ones below conflict with window navigation and are redundant
+vim.keymap.set('n', '<leader>ct', ':CloakToggle<CR>', { desc = '[C]loak [T]oggle' })
+vim.keymap.set('n', '<leader>ce', ':CloakEnable<CR>', { desc = '[C]loak [E]nable' })
+vim.keymap.set('n', '<leader>cd', ':CloakDisable<CR>', { desc = '[C]loak [D]isable' })
