@@ -11,9 +11,7 @@ return {
     },
   },
   lazy = false,
-
   cmd = 'Neotree',
-
   keys = {
     {
       '\\',
@@ -29,9 +27,7 @@ return {
   },
 
   config = function()
-    -- UPDATED: Modern diagnostic signs configuration (0.10+)
-    -- No longer uses vim.fn.sign_define - use vim.diagnostic.config instead
-    -- However, neo-tree still expects these for its own display
+    -- Diagnostic signs setup (Global)
     if vim.g.have_nerd_font then
       vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
       vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
@@ -40,28 +36,26 @@ return {
     end
 
     require('neo-tree').setup {
-
-      close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
+      close_if_last_window = true,
       popup_border_style = 'rounded',
       enable_git_status = true,
-      enable_diagnostics = true,
-      open_files_do_not_replace_types = { 'terminal', 'trouble', 'qf' }, -- when opening files, do not use windows containing these filetypes or buftypes
-      sort_case_insensitive = false, -- used when sorting files and directories in the tree
-      sort_function = nil, -- use a custom function for sorting files and directories in the tree
+      enable_diagnostics = true, -- MUST be true
+      open_files_do_not_replace_types = { 'terminal', 'trouble', 'qf' },
+      sort_case_insensitive = false,
+      sort_function = nil,
+
       default_component_configs = {
         container = {
           enable_character_fade = true,
         },
         indent = {
           indent_size = 2,
-          padding = 1, -- extra padding on left hand side
-          -- indent guides
+          padding = 1,
           with_markers = true,
           indent_marker = '│',
           last_indent_marker = '└',
           highlight = 'NeoTreeIndentMarker',
-          -- expander config, needed for nesting files
-          with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+          with_expanders = nil,
           expander_collapsed = '',
           expander_expanded = '',
           expander_highlight = 'NeoTreeExpander',
@@ -86,12 +80,10 @@ return {
         },
         git_status = {
           symbols = {
-            -- Change type
-            added = '', -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified = '', -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted = '✖', -- this can only be used in the git_status source
-            renamed = '󰁕', -- this can only be used in the git_status source
-            -- Status type
+            added = '',
+            modified = '',
+            deleted = '✖',
+            renamed = '󰁕',
             untracked = '',
             ignored = '',
             unstaged = '󰄱',
@@ -99,23 +91,42 @@ return {
             conflict = '',
           },
         },
+        -- ---------------------------------------------------------
+        --  ADDED: Diagnostics Configuration
+        -- ---------------------------------------------------------
+        diagnostics = {
+          symbols = {
+            hint = '󰌵',
+            info = '',
+            warn = '',
+            error = '',
+          },
+          highlights = {
+            hint = 'DiagnosticSignHint',
+            info = 'DiagnosticSignInfo',
+            warn = 'DiagnosticSignWarn',
+            error = 'DiagnosticSignError',
+          },
+        },
+        -- ---------------------------------------------------------
+
         file_size = {
           enabled = true,
-          required_width = 64, -- min width of window required to show this column
+          required_width = 64,
         },
         type = {
           enabled = true,
-          required_width = 122, -- min width of window required to show this column
+          required_width = 122,
         },
         last_modified = {
           format = 'relative',
           enabled = true,
-          required_width = 88, -- min width of window required to show this column
+          required_width = 88,
         },
         created = {
           format = 'relative',
           enabled = true,
-          required_width = 110, -- min width of window required to show this column
+          required_width = 110,
         },
         symlink_target = {
           enabled = false,
@@ -125,10 +136,10 @@ return {
       nesting_rules = {},
       filesystem = {
         filtered_items = {
-          visible = false, -- when true, they will just be displayed differently than normal items
+          visible = false,
           hide_dotfiles = false,
           hide_gitignored = false,
-          hide_hidden = false, -- only works on Windows for hidden files/directories
+          hide_hidden = false,
           hide_by_name = {
             '.DS_Store',
             'thumbs.db',
@@ -148,7 +159,7 @@ return {
           enabled = true,
           leave_dirs_open = true,
         },
-        group_empty_dirs = false, -- when true, empty folders will be grouped together
+        group_empty_dirs = false,
         hijack_netrw_behavior = 'open_default',
         use_libuv_file_watcher = false,
         window = {
@@ -181,7 +192,6 @@ return {
             ['<C-p>'] = 'move_cursor_up',
           },
         },
-
         commands = {},
       },
       buffers = {
@@ -189,7 +199,7 @@ return {
           enabled = true,
           leave_dirs_open = false,
         },
-        group_empty_dirs = true, -- when true, empty folders will be grouped together
+        group_empty_dirs = true,
         show_unloaded = true,
         window = {
           mappings = {
@@ -210,7 +220,6 @@ return {
         {
           event = 'file_opened',
           handler = function(file_path)
-            -- close neo-tree after a file is opened
             require('neo-tree.command').execute { action = 'close' }
           end,
         },
